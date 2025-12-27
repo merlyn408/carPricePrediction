@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor</title>
+
+    <style>
+        body {
+            background: #f7f7f7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            text-align: center;
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e7f7e7;
+            color: #2d7a2d;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Car Price Prediction</h2>
+
+    <form action="/predict" method="POST">
+
+        <label>Car Brand / Company:</label>
+        <select name="company" required>
+            <option disabled selected>Select Company</option>
+            <option>Maruti</option>
+            <option>Hyundai</option>
+            <option>Toyota</option>
+            <option>Mahindra</option>
+            <option>Honda</option>
+            <option>Ford</option>
+            <option>BMW</option>
+            <option>Tata</option>
+        </select>
+
+        <label>Year of Manufacture:</label>
+        <input type="number" name="year" placeholder="e.g. 2015" required>
+
+        <label>Kilometers Driven:</label>
+        <input type="number" name="kms_driven" placeholder="e.g. 39000" required>
+
+        <label>Fuel Type:</label>
+        <select name="fuel_type" required>
+            <option disabled selected>Select Fuel Type</option>
+            <option>Petrol</option>
+            <option>Diesel</option>
+            <option>CNG</option>
+        </select>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
